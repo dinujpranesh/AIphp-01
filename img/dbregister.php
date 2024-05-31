@@ -31,12 +31,22 @@ $confirmPassword = $_POST['confirmPassword'];
 // Insert the data into the database
 $sql = "INSERT INTO employee (email, firstName, lastName, phone, salary, gender, dateOfBirth, password, confirmPassword)
         VALUES ('$email', '$firstName', '$lastName', '$phone', '$salary', '$gender', '$dateOfBirth', '$password', '$confirmPassword')";
-
+try {
 if ($conn->query($sql) === TRUE) {
     echo "Data inserted successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
+} catch (mysqli_sql_exception $e) {
+    if (strpos($e->getMessage(), 'Duplicate entry') !== false) {
+        header('Location:register.php?error');
+        exit();
+
+    } else {
+        echo "Error: " . $e->getMessage();
+    }
+}
+
 
 $conn->close();
 ?>
