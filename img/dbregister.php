@@ -3,7 +3,7 @@
 $servername = "your_servername";
 $username = "root";
 $password = "";
-$dbname = "aiphp";
+$dbname = "AIphp";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
