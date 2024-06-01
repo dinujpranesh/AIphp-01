@@ -1,8 +1,14 @@
 <?php
+// Enable error reporting
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+
 // Connect to the database
 $servername = "your_servername";
-$username = "your_username";
-$password = "your_password";
+$username = "root";
+$password = "";
 $dbname = "AIphp";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
