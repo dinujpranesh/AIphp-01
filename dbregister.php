@@ -10,7 +10,19 @@ error_reporting(E_ALL);
 $servername = "your_servername";
 $username = "root";
 $password = "";
-$dbname = "aiphp";
+$dbname = "AIphp";
+
+function generatePassword($length = 8) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $password = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $index = rand(0, strlen($characters) - 1);
+        $password .= $characters[$index];
+    }
+
+    return $password;
+}
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -27,7 +39,7 @@ $phone = $_POST['phone'];
 $salary = $_POST['salary'];
 $gender = $_POST['gender'];
 $dateOfBirth = $_POST['dateOfBirth'];
-$password = $_POST['password'];
+$password = generatePassword();
 
 // Insert the data into the database
 $sql = "INSERT INTO employee (email, firstName, lastName, phone, salary, gender, dateOfBirth, password)
